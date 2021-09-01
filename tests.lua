@@ -128,6 +128,26 @@ function relative_coordinate_helper.get_pos_relative_test1()
         vector.equals( get_pos_relative(pos, {x=3, y=3, z=3}, face_vector, down_vector), {x=-3, y=-3, z=-3} )
     , "Test 6.c failed")
     minetest.chat_send_all('Test 6.c done!')
+    -- 7 face to x, foot z
+    face_vector = {x=1, y=0, z=0}
+    down_vector = {x=0, y=0, z=1}
+    assert(
+        vector.equals( get_pos_relative(pos, {x=3, y=3, z=3}, face_vector, down_vector), {x=3, y=3, z=-3} )
+    , "Test 7 failed")
+    minetest.chat_send_all('Test 7 done!')
+    -- 8 face to x, foot up
+    face_vector = {x=1, y=0, z=0}
+    down_vector = {x=0, y=1, z=0}
+    assert(
+        vector.equals( get_pos_relative(pos, {x=1, y=-1, z=1}, face_vector, down_vector), {x=1, y=1, z=-1} ) and
+        vector.equals( get_pos_relative(pos, {x=1, y=-1, z=0}, face_vector, down_vector), {x=1, y=1, z=0} ) and
+        vector.equals( get_pos_relative(pos, {x=1, y=-1, z=-1}, face_vector, down_vector), {x=1, y=1, z=1} ) and
+        -- -- ...
+        vector.equals( get_pos_relative(pos, {x=-1, y=1, z=0}, face_vector, down_vector), {x=-1, y=-1, z=0} ) and
+        vector.equals( get_pos_relative(pos, {x=-1, y=1, z=-1}, face_vector, down_vector), {x=-1, y=-1, z=1} ) and
+        vector.equals( get_pos_relative(pos, {x=3, y=3, z=3}, face_vector, down_vector), {x=3, y=-3, z=-3} )
+    , "Test 8 failed")
+    minetest.chat_send_all('Test 8 done!')
     -- 20.b face to the right, tilt to the right. different position.
     face_vector = {x=0, y=0, z=-1}
     down_vector = {x=1, y=0, z=0}
